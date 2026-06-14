@@ -22,14 +22,18 @@ HEADERS = {
 
 
 def _prune_monthly(records: list[dict]) -> list[dict]:
-    """Keep only the first record per calendar month."""
-    seen = set()
+    """Keep only the last record per calendar month (most recent NAV)."""
     result = []
+    prev_key = None
     for r in records:
         key = r["date"][:7]  # YYYY-MM
-        if key not in seen:
-            seen.add(key)
-            result.append(r)
+        if key != prev_key:
+            if prev_key is not None:
+                result.append(last)
+            prev_key = key
+        last = r
+    if prev_key is not None:
+        result.append(last)
     return result
 
 
@@ -38,6 +42,16 @@ def fetch_nav(fund_id: str, retries: int = 3) -> list[dict]:
 
     Returns a list of dicts with 'date' (str YYYY-MM-DD) and 'nav' (float).
     """
+    records = _fetch_raw(fund_id, retries)
+    return _prune_monthly(records)
+
+
+def fetch_nav_daily(fund_id: str, retries: int = 3) -> list[dict]:
+    """Fetch all daily NAV records (no pruning)."""
+    return _fetch_raw(fund_id, retries)
+
+
+def _fetch_raw(fund_id: str, retries: int = 3) -> list[dict]:
     url = API_TEMPLATE.format(fund_id=fund_id)
 
     for attempt in range(retries):
@@ -55,7 +69,7 @@ def fetch_nav(fund_id: str, retries: int = 3) -> list[dict]:
                         records.append({"date": date, "nav": nav})
                         break
 
-            return _prune_monthly(records)
+            return records
         except Exception as e:
             wait = (attempt + 1) * 5
             log.warning(

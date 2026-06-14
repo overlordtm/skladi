@@ -15,7 +15,7 @@ from pathlib import Path
 import pandas as pd
 import yfinance as yf
 
-from src.nlbapi import fetch_nav
+from src.nlbapi import fetch_nav, fetch_nav_daily
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s"
@@ -68,23 +68,37 @@ def process_item(item: dict) -> bool:
         if source_type == "nlb_api":
             fund_id = item["source"]["fund_id"]
             log.info("[%s] Fetching NLB API (fund_id=%s)", item_id, fund_id)
-            records = fetch_nav(fund_id)
-            write_csv(output_path, records, ("date", "nav"))
+            daily_records = fetch_nav_daily(fund_id)
+            if not daily_records:
+                raise RuntimeError("No daily data returned")
+            # Write monthly CSV
+            from src.nlbapi.client import _prune_monthly
+            monthly = _prune_monthly(daily_records)
+            write_csv(output_path, monthly, ("date", "nav"))
+            # Write daily CSV
+            daily_path = output_path.parent / (output_path.stem + "_daily.csv")
+            write_csv(daily_path, daily_records, ("date", "nav"))
+            log.info(
+                "[%s] Wrote %d rows → %s (%s → %s)",
+                item_id, len(monthly), output_path,
+                monthly[0]["date"], monthly[-1]["date"],
+            )
+            log.info(
+                "[%s] Wrote %d daily rows → %s (%s → %s)",
+                item_id, len(daily_records), daily_path,
+                daily_records[0]["date"], daily_records[-1]["date"],
+            )
         elif source_type == "yahoo":
             records = extract_yahoo(item)
             write_csv(output_path, records, ("date", "close"))
+            log.info(
+                "[%s] Wrote %d rows → %s (%s → %s)",
+                item_id, len(records), output_path,
+                records[0]["date"], records[-1]["date"],
+            )
         else:
             log.error("[%s] Unknown source type: %s", item_id, source_type)
             return False
-
-        log.info(
-            "[%s] Wrote %d rows → %s (%s → %s)",
-            item_id,
-            len(records),
-            output_path,
-            records[0]["date"],
-            records[-1]["date"],
-        )
         return True
     except Exception as e:
         log.error("[%s] Failed: %s", item_id, e)

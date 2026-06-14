@@ -130,7 +130,7 @@ table.summary-table td{padding:7px 10px;border-bottom:1px solid rgba(255,255,255
     </div>
     <div class="form-group">
       <label>Start Date</label>
-      <input type="month" id="cfg-start" value="2025-02">
+      <input type="month" id="cfg-start">
     </div>
     <div class="form-group">
       <label>End Date</label>
@@ -218,6 +218,7 @@ async function initOptions() {
           id: item.id,
           name: item.name + ' (' + item.ticker + ')',
           csvUrl: item.output,
+          category: 'etf',
           metadata: 'ETF · TER ' + item.ter + '% · ' + item.currency,
           fees: { entry: item.fees.entry_fee, exit: item.fees.exit_fee, fixed: item.fees.fixed_monthly },
           defaultPreset: 'TradeRepublic'
@@ -227,6 +228,7 @@ async function initOptions() {
           id: item.id,
           name: item.name,
           csvUrl: item.output,
+          category: 'mutual_fund',
           metadata: 'Mutual fund · ' + item.currency,
           fees: { entry: item.fees.entry_fee, exit: item.fees.exit_fee, fixed: item.fees.fixed_monthly },
           defaultPreset: 'NLB Fund'
@@ -477,6 +479,25 @@ function simulate(selected) {
   var startParts = startStr.split('-');
   var startDate = new Date(+startParts[0], +startParts[1] - 1, 1);
 
+  var commonStart = null;
+  var commonStartStr = null;
+  for (var i = 0; i < selected.length; i++) {
+    var d = selected[i].data;
+    if (d && d.length > 0) {
+      var fd = parseDate(d[0][0]);
+      if (!commonStart || fd > commonStart) {
+        commonStart = fd;
+        commonStartStr = d[0][0];
+      }
+    }
+  }
+
+  var adjustedStart = null;
+  if (commonStart && startDate < commonStart) {
+    adjustedStart = commonStartStr;
+    startDate = new Date(commonStart.getFullYear(), commonStart.getMonth(), 1);
+  }
+
   var endDate;
   if (endStr) {
     var ep = endStr.split('-');
@@ -486,7 +507,7 @@ function simulate(selected) {
     endDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   }
 
-  if (startDate >= endDate) return null;
+  if (startDate >= endDate) return { results: null, adjustedStart: adjustedStart };
 
   var results = [];
 
@@ -499,6 +520,10 @@ function simulate(selected) {
     var entryFee = fov ? fov.entry : 0;
     var exitFee = fov ? fov.exit : 0;
     var fixedFee = fov ? fov.fixed : 0;
+
+    if (sel.category === 'mutual_fund' && (endDate - startDate) / (365.25 * 86400000) > 5) {
+      exitFee = 0;
+    }
 
     var totalUnits = 0, totalInvested = 0, totalEntryFees = 0;
     var lastPrice = data[data.length - 1][1];
@@ -521,7 +546,7 @@ function simulate(selected) {
       totalUnits += units;
       totalInvested += contrib;
       totalEntryFees += ea;
-      chartPoints.push([pd, cumUnits * p]);
+      chartPoints.push([pd, cumUnits * p * (1 - exitFee / 100)]);
 
       cur.setMonth(cur.getMonth() + 1);
     }
@@ -550,7 +575,7 @@ function simulate(selected) {
     });
   }
 
-  return results;
+  return { results: results, adjustedStart: adjustedStart };
 }
 
 // ============ RENDER ============
@@ -599,7 +624,7 @@ function renderResults(results) {
   }
   html += '</tbody></table></div>';
 
-  html += '<h3>Portfolio Value Over Time (Gross)</h3>';
+  html += '<h3>Portfolio Value Over Time (Net)</h3>';
   html += '<div class="chart-container" style="height:420px"><canvas id="chart-main"></canvas></div>';
   html += '<h3>Fee Comparison</h3>';
   html += '<div class="chart-container" style="height:300px"><canvas id="chart-fees"></canvas></div>';
@@ -729,7 +754,8 @@ async function runSimulation() {
       idx: idx,
       id: OPTIONS[idx].id,
       name: OPTIONS[idx].name,
-      csvUrl: OPTIONS[idx].csvUrl
+      csvUrl: OPTIONS[idx].csvUrl,
+      category: OPTIONS[idx].category
     });
   }
 
@@ -758,18 +784,25 @@ async function runSimulation() {
     status('Ready — ' + selected.length + ' funds, ' + total + ' data points');
   }
 
-  var results = simulate(selected);
-  renderResults(results);
+  var simResult = simulate(selected);
+  if (simResult.adjustedStart) {
+    document.getElementById('cfg-start').value = simResult.adjustedStart.substring(0, 7);
+    status('Start date adjusted to ' + simResult.adjustedStart + ' — some funds have shorter history', true);
+  }
+  renderResults(simResult.results);
 }
 
 // Init
-function setDefaultEnd() {
+function setDefaultDates() {
   var now = new Date();
   var m = String(now.getMonth() + 1).padStart(2, '0');
   document.getElementById('cfg-end').value = now.getFullYear() + '-' + m;
+  var threeYr = new Date(now.getFullYear() - 3, now.getMonth(), 1);
+  var sm = String(threeYr.getMonth() + 1).padStart(2, '0');
+  document.getElementById('cfg-start').value = threeYr.getFullYear() + '-' + sm;
 }
 
-setDefaultEnd();
+setDefaultDates();
 initOptions().then(function() {
   setTimeout(runSimulation, 500);
 });
