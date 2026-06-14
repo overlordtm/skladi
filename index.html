@@ -81,11 +81,6 @@ h3{
   padding:2px 4px;border-radius:4px;flex-shrink:0
 }
 .selected-tag .tag-remove:hover{color:var(--accent);background:rgba(233,69,96,0.12)}
-.selected-tag .tag-fee-toggle{
-  cursor:pointer;color:var(--accent2);margin-right:6px;font-size:.70rem;
-  user-select:none;flex-shrink:0
-}
-.selected-tag .tag-fee-toggle:hover{text-decoration:underline}
 
 /* Fee config inline */
 .fee-inline{
@@ -166,8 +161,8 @@ var COLORS = ['#e94560','#0abde3','#10b981','#f59e0b','#8b5cf6','#ec4899','#06b6
 var FEE_PRESETS = {
   'NLB Fund': { entry: 2.55, exit: 1.0, fixed: 0 },
   'Trading212': { entry: 0, exit: 0, fixed: 0 },
+  'TradeRepublic': { entry: 0, exit: 0, fixed: 0 },
   'IBKR Tiered': { entry: 0, exit: 0, fixed: 1.25 },
-  'Degiro': { entry: 0, exit: 0, fixed: 1.0 },
   'Custom': null
 };
 
@@ -225,7 +220,7 @@ async function initOptions() {
           csvUrl: item.output,
           metadata: 'ETF · TER ' + item.ter + '% · ' + item.currency,
           fees: { entry: item.fees.entry_fee, exit: item.fees.exit_fee, fixed: item.fees.fixed_monthly },
-          defaultPreset: 'Trading212'
+          defaultPreset: 'TradeRepublic'
         });
       } else {
         OPTIONS.push({
@@ -339,8 +334,7 @@ function renderSelectedList() {
     var color = COLORS[i % COLORS.length];
     html += '<div>';
     html += '<div class="selected-tag">';
-    html += '<span class="tag-fee-toggle" data-idx="' + idx + '" title="Configure fees">⚙</span>';
-    html += '<span class="tag-name" style="border-left:3px solid ' + color + ';padding-left:8px">' + opt.name + '</span>';
+    html += '<span class="tag-name" data-idx="' + idx + '" style="border-left:3px solid ' + color + ';padding-left:8px;cursor:pointer" title="Configure fees">' + opt.name + '</span>';
     html += '<span class="tag-remove" data-idx="' + idx + '" title="Remove">✕</span>';
     html += '</div>';
     html += '<div class="fee-inline" id="fee-inline-' + idx + '">';
@@ -368,8 +362,8 @@ function renderSelectedList() {
     });
   }
 
-  // Bind fee toggles
-  var toggles = container.querySelectorAll('.tag-fee-toggle');
+  // Bind fee toggles (click on fund name)
+  var toggles = container.querySelectorAll('.tag-name');
   for (var t = 0; t < toggles.length; t++) {
     toggles[t].addEventListener('click', function() {
       var idx = this.getAttribute('data-idx');

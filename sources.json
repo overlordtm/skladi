@@ -2,7 +2,7 @@
     "items": [
         {
             "id": "nlb-globalni-uravnotezeni",
-            "name": "NLB Skladi Globalni Uravnoteženi",
+            "name": "NLB Skladi Globalni Uravnote\u017eeni",
             "currency": "EUR",
             "category": "mutual_fund",
             "fees": {
@@ -18,7 +18,7 @@
         },
         {
             "id": "nlb-slovenija-mesani",
-            "name": "NLB Skladi Slovenija Mešani",
+            "name": "NLB Skladi Slovenija Me\u0161ani",
             "currency": "EUR",
             "category": "mutual_fund",
             "fees": {
@@ -34,7 +34,7 @@
         },
         {
             "id": "nlb-podjetniske-obveznice-eur",
-            "name": "NLB Skladi Podjetniške Obveznice EUR",
+            "name": "NLB Skladi Podjetni\u0161ke Obveznice EUR",
             "currency": "EUR",
             "category": "mutual_fund",
             "fees": {
@@ -50,7 +50,7 @@
         },
         {
             "id": "nlb-svetovni-razviti-trgi-delniski",
-            "name": "NLB Skladi Svetovni Razviti Trgi Delniški",
+            "name": "NLB Skladi Svetovni Razviti Trgi Delni\u0161ki",
             "currency": "EUR",
             "category": "mutual_fund",
             "fees": {
@@ -66,7 +66,7 @@
         },
         {
             "id": "nlb-evropa-uravnotezeni",
-            "name": "NLB Skladi Evropa Uravnoteženi",
+            "name": "NLB Skladi Evropa Uravnote\u017eeni",
             "currency": "EUR",
             "category": "mutual_fund",
             "fees": {
@@ -82,7 +82,7 @@
         },
         {
             "id": "nlb-dinamicni-razviti-trgi-delniski",
-            "name": "NLB Skladi Dinamični Razviti Trgi Delniški",
+            "name": "NLB Skladi Dinami\u010dni Razviti Trgi Delni\u0161ki",
             "currency": "EUR",
             "category": "mutual_fund",
             "fees": {
@@ -98,7 +98,7 @@
         },
         {
             "id": "nlb-razvita-evropa-delniski",
-            "name": "NLB Skladi Razvita Evropa Delniški",
+            "name": "NLB Skladi Razvita Evropa Delni\u0161ki",
             "currency": "EUR",
             "category": "mutual_fund",
             "fees": {
@@ -114,7 +114,7 @@
         },
         {
             "id": "nlb-farmacija-in-zdravstvo-delniski",
-            "name": "NLB Skladi Farmacija in Zdravstvo Delniški",
+            "name": "NLB Skladi Farmacija in Zdravstvo Delni\u0161ki",
             "currency": "EUR",
             "category": "mutual_fund",
             "fees": {
@@ -130,7 +130,7 @@
         },
         {
             "id": "nlb-naravni-viri-delniski",
-            "name": "NLB Skladi Naravni Viri Delniški",
+            "name": "NLB Skladi Naravni Viri Delni\u0161ki",
             "currency": "EUR",
             "category": "mutual_fund",
             "fees": {
@@ -146,7 +146,7 @@
         },
         {
             "id": "nlb-visoka-tehnologija-delniski",
-            "name": "NLB Skladi Visoka Tehnologija Delniški",
+            "name": "NLB Skladi Visoka Tehnologija Delni\u0161ki",
             "currency": "EUR",
             "category": "mutual_fund",
             "fees": {
@@ -162,7 +162,7 @@
         },
         {
             "id": "nlb-trgi-v-razvoju-delniski",
-            "name": "NLB Skladi Trgi v Razvoju Delniški",
+            "name": "NLB Skladi Trgi v Razvoju Delni\u0161ki",
             "currency": "EUR",
             "category": "mutual_fund",
             "fees": {
@@ -178,7 +178,7 @@
         },
         {
             "id": "nlb-evropa-trgi-v-razvoju-delniski",
-            "name": "NLB Skladi Evropa Trgi v Razvoju Delniški",
+            "name": "NLB Skladi Evropa Trgi v Razvoju Delni\u0161ki",
             "currency": "EUR",
             "category": "mutual_fund",
             "fees": {
@@ -194,7 +194,7 @@
         },
         {
             "id": "nlb-zahodni-balkan-delniski",
-            "name": "NLB Skladi Zahodni Balkan Delniški",
+            "name": "NLB Skladi Zahodni Balkan Delni\u0161ki",
             "currency": "EUR",
             "category": "mutual_fund",
             "fees": {
@@ -210,7 +210,7 @@
         },
         {
             "id": "nlb-globalni-delniski",
-            "name": "NLB Skladi Globalni Delniški",
+            "name": "NLB Skladi Globalni Delni\u0161ki",
             "currency": "EUR",
             "category": "mutual_fund",
             "fees": {
@@ -226,7 +226,7 @@
         },
         {
             "id": "nlb-azija-delniski",
-            "name": "NLB Skladi Azija Delniški",
+            "name": "NLB Skladi Azija Delni\u0161ki",
             "currency": "EUR",
             "category": "mutual_fund",
             "fees": {
@@ -258,7 +258,7 @@
         },
         {
             "id": "nlb-nepremicnine-delniski",
-            "name": "NLB Skladi Nepremičnine Delniški",
+            "name": "NLB Skladi Nepremi\u010dnine Delni\u0161ki",
             "currency": "EUR",
             "category": "mutual_fund",
             "fees": {
@@ -274,7 +274,7 @@
         },
         {
             "id": "nlb-zda-delniski",
-            "name": "NLB Skladi ZDA Delniški",
+            "name": "NLB Skladi ZDA Delni\u0161ki",
             "currency": "EUR",
             "category": "mutual_fund",
             "fees": {
@@ -290,7 +290,7 @@
         },
         {
             "id": "nlb-druzbeno-odgovorni-razviti-trgi-delniski",
-            "name": "NLB Skladi Družbeno Odgovorni Razviti Trgi Delniški",
+            "name": "NLB Skladi Dru\u017ebeno Odgovorni Razviti Trgi Delni\u0161ki",
             "currency": "EUR",
             "category": "mutual_fund",
             "fees": {
@@ -306,7 +306,7 @@
         },
         {
             "id": "nlb-zeleni-delniski",
-            "name": "NLB Skladi Zeleni Delniški",
+            "name": "NLB Skladi Zeleni Delni\u0161ki",
             "currency": "EUR",
             "category": "mutual_fund",
             "fees": {
@@ -398,7 +398,7 @@
             "ticker": "IWDA.AS",
             "currency": "EUR",
             "category": "etf",
-            "ter": 0.20,
+            "ter": 0.2,
             "fees": {
                 "entry_fee": 0,
                 "exit_fee": 0,
@@ -409,6 +409,816 @@
                 "ticker": "IWDA.AS"
             },
             "output": "data/iwda.csv"
+        },
+        {
+            "id": "vwrl",
+            "name": "Vanguard FTSE All-World UCITS ETF (Dist)",
+            "ticker": "VWRL.AS",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.22,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "VWRL.AS"
+            },
+            "output": "data/vwrl.csv"
+        },
+        {
+            "id": "iusq",
+            "name": "iShares MSCI ACWI UCITS ETF (Acc)",
+            "ticker": "IUSQ.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.2,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "IUSQ.DE"
+            },
+            "output": "data/iusq.csv"
+        },
+        {
+            "id": "spyi",
+            "name": "SPDR MSCI ACWI IMI UCITS ETF (Acc)",
+            "ticker": "SPYI.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.17,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "SPYI.DE"
+            },
+            "output": "data/spyi.csv"
+        },
+        {
+            "id": "praw",
+            "name": "Amundi Prime All Country World UCITS ETF (Acc)",
+            "ticker": "PRAW.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.05,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "PRAW.DE"
+            },
+            "output": "data/praw.csv"
+        },
+        {
+            "id": "webk",
+            "name": "Amundi Prime All Country World UCITS ETF (Acc)",
+            "ticker": "WEBK.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.07,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "WEBK.DE"
+            },
+            "output": "data/webk.csv"
+        },
+        {
+            "id": "vgvf",
+            "name": "Vanguard FTSE Developed World UCITS ETF (Acc)",
+            "ticker": "VGVF.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.12,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "VGVF.DE"
+            },
+            "output": "data/vgvf.csv"
+        },
+        {
+            "id": "eunl",
+            "name": "iShares Core MSCI World UCITS ETF (Acc)",
+            "ticker": "EUNL.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.2,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "EUNL.DE"
+            },
+            "output": "data/eunl.csv"
+        },
+        {
+            "id": "lyp6",
+            "name": "Amundi MSCI World UCITS ETF (Acc)",
+            "ticker": "LYP6.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.12,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "LYP6.DE"
+            },
+            "output": "data/lyp6.csv"
+        },
+        {
+            "id": "xdwd",
+            "name": "Xtrackers MSCI World UCITS ETF 1C",
+            "ticker": "XDWD.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.19,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "XDWD.DE"
+            },
+            "output": "data/xdwd.csv"
+        },
+        {
+            "id": "sc0h",
+            "name": "Invesco MSCI World UCITS ETF (Acc)",
+            "ticker": "SC0H.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.15,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "SC0H.DE"
+            },
+            "output": "data/sc0h.csv"
+        },
+        {
+            "id": "fwia",
+            "name": "Invesco FTSE All-World UCITS ETF (Acc)",
+            "ticker": "FWIA.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.15,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "FWIA.DE"
+            },
+            "output": "data/fwia.csv"
+        },
+        {
+            "id": "vuaa",
+            "name": "Vanguard S&P 500 UCITS ETF (Acc)",
+            "ticker": "VUAA.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.07,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "VUAA.DE"
+            },
+            "output": "data/vuaa.csv"
+        },
+        {
+            "id": "vusa",
+            "name": "Vanguard S&P 500 UCITS ETF (Dist)",
+            "ticker": "VUSA.AS",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.07,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "VUSA.AS"
+            },
+            "output": "data/vusa.csv"
+        },
+        {
+            "id": "cspx",
+            "name": "iShares Core S&P 500 UCITS ETF (Acc)",
+            "ticker": "CSPX.AS",
+            "currency": "USD",
+            "category": "etf",
+            "ter": 0.07,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "CSPX.AS"
+            },
+            "output": "data/cspx.csv"
+        },
+        {
+            "id": "sxrv",
+            "name": "iShares NASDAQ 100 UCITS ETF (Acc)",
+            "ticker": "SXRV.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.33,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "SXRV.DE"
+            },
+            "output": "data/sxrv.csv"
+        },
+        {
+            "id": "is3n",
+            "name": "iShares Core MSCI EM IMI UCITS ETF (Acc)",
+            "ticker": "IS3N.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.18,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "IS3N.DE"
+            },
+            "output": "data/is3n.csv"
+        },
+        {
+            "id": "vfea",
+            "name": "Vanguard FTSE Emerging Markets UCITS ETF (Acc)",
+            "ticker": "VFEA.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.22,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "VFEA.DE"
+            },
+            "output": "data/vfea.csv"
+        },
+        {
+            "id": "xmme",
+            "name": "Xtrackers MSCI Emerging Markets UCITS ETF 1C",
+            "ticker": "XMME.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.18,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "XMME.DE"
+            },
+            "output": "data/xmme.csv"
+        },
+        {
+            "id": "imae",
+            "name": "iShares MSCI Europe UCITS ETF (Acc)",
+            "ticker": "EUNK.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.12,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "EUNK.DE"
+            },
+            "output": "data/imae.csv"
+        },
+        {
+            "id": "exsa",
+            "name": "iShares STOXX Europe 600 UCITS ETF (Acc)",
+            "ticker": "EXSA.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.2,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "EXSA.DE"
+            },
+            "output": "data/exsa.csv"
+        },
+        {
+            "id": "vwcg",
+            "name": "Vanguard FTSE Developed Europe UCITS ETF (Acc)",
+            "ticker": "VWCG.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.1,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "VWCG.DE"
+            },
+            "output": "data/vwcg.csv"
+        },
+        {
+            "id": "lypx",
+            "name": "Amundi STOXX Europe 600 UCITS ETF (Acc)",
+            "ticker": "LYPX.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.07,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "LYPX.DE"
+            },
+            "output": "data/lypx.csv"
+        },
+        {
+            "id": "dxeg",
+            "name": "Xtrackers STOXX Europe 600 UCITS ETF 1C",
+            "ticker": "DBXD.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.09,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "DBXD.DE"
+            },
+            "output": "data/dxeg.csv"
+        },
+        {
+            "id": "qdve",
+            "name": "iShares S&P 500 Information Technology Sector UCITS ETF (Acc)",
+            "ticker": "QDVE.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.15,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "QDVE.DE"
+            },
+            "output": "data/qdve.csv"
+        },
+        {
+            "id": "qdvf",
+            "name": "iShares S&P 500 Financials Sector UCITS ETF (Acc)",
+            "ticker": "QDVF.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.15,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "QDVF.DE"
+            },
+            "output": "data/qdvf.csv"
+        },
+        {
+            "id": "iuhe",
+            "name": "iShares S&P 500 Health Care Sector UCITS ETF (Acc)",
+            "ticker": "QDVG.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.15,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "QDVG.DE"
+            },
+            "output": "data/iuhe.csv"
+        },
+        {
+            "id": "iusn",
+            "name": "iShares MSCI World Small Cap UCITS ETF (Acc)",
+            "ticker": "IUSN.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.18,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "IUSN.DE"
+            },
+            "output": "data/iusn.csv"
+        },
+        {
+            "id": "aggh",
+            "name": "iShares Core Global Aggregate Bond UCITS ETF (Acc)",
+            "ticker": "AGGH.AS",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.1,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "AGGH.AS"
+            },
+            "output": "data/aggh.csv"
+        },
+        {
+            "id": "euna",
+            "name": "iShares Core Global Aggregate Bond UCITS ETF (Acc)",
+            "ticker": "EUNA.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.1,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "EUNA.DE"
+            },
+            "output": "data/euna.csv"
+        },
+        {
+            "id": "ibcx",
+            "name": "iShares EUR Government Bond UCITS ETF (Acc)",
+            "ticker": "IBCX.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.09,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "IBCX.DE"
+            },
+            "output": "data/ibcx.csv"
+        },
+        {
+            "id": "vety",
+            "name": "Vanguard EUR Corporate Bond UCITS ETF (Acc)",
+            "ticker": "VECP.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.09,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "VECP.DE"
+            },
+            "output": "data/vety.csv"
+        },
+        {
+            "id": "vagf",
+            "name": "Vanguard Global Aggregate Bond UCITS ETF (Acc)",
+            "ticker": "VAGF.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.1,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "VAGF.DE"
+            },
+            "output": "data/vagf.csv"
+        },
+        {
+            "id": "dbzb",
+            "name": "Xtrackers II Eurozone Government Bond UCITS ETF 1C",
+            "ticker": "DBZB.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.09,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "DBZB.DE"
+            },
+            "output": "data/dbzb.csv"
+        },
+        {
+            "id": "igln",
+            "name": "iShares Physical Gold ETC",
+            "ticker": "IS0C.DE",
+            "currency": "USD",
+            "category": "etf",
+            "ter": 0.12,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "IS0C.DE"
+            },
+            "output": "data/igln.csv"
+        },
+        {
+            "id": "ppfb",
+            "name": "iShares Physical Gold ETC",
+            "ticker": "PPFB.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.12,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "PPFB.DE"
+            },
+            "output": "data/ppfb.csv"
+        },
+        {
+            "id": "xgdu",
+            "name": "Xtrackers Physical Gold ETC",
+            "ticker": "XGDU.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.12,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "XGDU.DE"
+            },
+            "output": "data/xgdu.csv"
+        },
+        {
+            "id": "eunj",
+            "name": "iShares MSCI Japan UCITS ETF (Acc)",
+            "ticker": "EUNJ.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.12,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "EUNJ.DE"
+            },
+            "output": "data/eunj.csv"
+        },
+        {
+            "id": "xdjp",
+            "name": "Xtrackers Nikkei 225 UCITS ETF 1C",
+            "ticker": "XDJP.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.09,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "XDJP.DE"
+            },
+            "output": "data/xdjp.csv"
+        },
+        {
+            "id": "iwmo",
+            "name": "Xtrackers MSCI World Momentum UCITS ETF 1C",
+            "ticker": "XDEM.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.3,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "XDEM.DE"
+            },
+            "output": "data/iwmo.csv"
+        },
+        {
+            "id": "iwqu",
+            "name": "Xtrackers MSCI World Quality UCITS ETF 1C",
+            "ticker": "XDEQ.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.3,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "XDEQ.DE"
+            },
+            "output": "data/iwqu.csv"
+        },
+        {
+            "id": "iwvl",
+            "name": "Xtrackers MSCI World Minimum Volatility UCITS ETF 1C",
+            "ticker": "XZW0.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.3,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "XZW0.DE"
+            },
+            "output": "data/iwvl.csv"
+        },
+        {
+            "id": "zprv",
+            "name": "SPDR MSCI USA Value Weighted UCITS ETF (Acc)",
+            "ticker": "ZPRV.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.2,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "ZPRV.DE"
+            },
+            "output": "data/zprv.csv"
+        },
+        {
+            "id": "zprx",
+            "name": "SPDR MSCI Europe Small Cap Value Weighted UCITS ETF (Acc)",
+            "ticker": "ZPRX.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.3,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "ZPRX.DE"
+            },
+            "output": "data/zprx.csv"
+        },
+        {
+            "id": "susi",
+            "name": "iShares MSCI World SRI UCITS ETF (Acc)",
+            "ticker": "2B7K.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.2,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "2B7K.DE"
+            },
+            "output": "data/susi.csv"
+        },
+        {
+            "id": "ayem",
+            "name": "iShares MSCI World ESG Enhanced UCITS ETF (Acc)",
+            "ticker": "AYEM.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.2,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "AYEM.DE"
+            },
+            "output": "data/ayem.csv"
         }
     ]
 }
