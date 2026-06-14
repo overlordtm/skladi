@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fund Comparator</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg0:#0a0a1a;--bg1:#1a1a2e;--bg2:#16213e;--bg3:#0f3460;
+  --accent:#e94560;--accent2:#0abde3;--accent3:#10b981;--accent4:#f59e0b;
+  --text:#e0e0e0;--text-muted:#8892a4;
+  --card-bg:rgba(22,33,62,0.85);--card-border:rgba(255,255,255,0.06);
+  --input-bg:rgba(10,10,26,0.7);--radius:10px
+}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;
+  background:var(--bg0);color:var(--text);min-height:100vh;line-height:1.5
+}
+.app{display:grid;grid-template-columns:360px 1fr;min-height:100vh}
+.left-panel{
+  background:var(--bg1);padding:24px 20px;border-right:1px solid var(--card-border);
+  overflow-y:auto;max-height:100vh;position:sticky;top:0
+}
+.main-content{padding:24px 28px;overflow-y:auto}
+h3{
+  font-size:.95rem;font-weight:600;color:var(--text-muted);margin-bottom:10px;
+  text-transform:uppercase;letter-spacing:.05em
+}
+.section{
+  background:var(--card-bg);border:1px solid var(--card-border);
+  border-radius:var(--radius);padding:14px 16px;margin-bottom:14px;backdrop-filter:blur(8px)
+}
+.section-title{
+  font-size:.85rem;font-weight:700;color:var(--accent2);text-transform:uppercase;
+  letter-spacing:.06em;margin-bottom:10px
+}
+.form-group{margin-bottom:10px}
+.form-group label{display:block;font-size:.80rem;color:var(--text-muted);margin-bottom:4px}
+.form-group input{
+  width:100%;padding:8px 10px;background:var(--input-bg);border:1px solid rgba(255,255,255,0.1);
+  border-radius:6px;color:var(--text);font-size:.88rem;font-family:inherit
+}
+.form-group input:focus{outline:none;border-color:var(--accent2);box-shadow:0 0 0 2px rgba(10,189,227,0.15)}
+.form-group input[type="month"]{color-scheme:dark}
+
+/* Dropdown */
+.dropdown-wrap{position:relative}
+.dropdown-wrap input{
+  width:100%;padding:8px 10px;background:var(--input-bg);border:1px solid rgba(255,255,255,0.1);
+  border-radius:6px;color:var(--text);font-size:.85rem;font-family:inherit
+}
+.dropdown-wrap input:focus{outline:none;border-color:var(--accent2);box-shadow:0 0 0 2px rgba(10,189,227,0.15)}
+.dropdown-menu{
+  display:none;position:absolute;top:100%;left:0;right:0;z-index:20;
+  max-height:260px;overflow-y:auto;background:var(--bg2);border:1px solid rgba(255,255,255,0.1);
+  border-radius:6px;margin-top:2px
+}
+.dropdown-menu.open{display:block}
+.dropdown-item{
+  padding:7px 12px;cursor:pointer;font-size:.82rem;border-bottom:1px solid rgba(255,255,255,0.04);
+  display:flex;justify-content:space-between;align-items:center
+}
+.dropdown-item:hover{background:rgba(10,189,227,0.12)}
+.dropdown-item.selected{color:var(--accent2)}
+.dropdown-item .meta{font-size:.68rem;color:var(--text-muted)}
+.dropdown-no-results{padding:10px 12px;font-size:.80rem;color:var(--text-muted);text-align:center}
+
+/* Selected tags */
+.selected-list{margin-top:10px}
+.selected-tag{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:6px 10px;margin-bottom:4px;background:rgba(10,189,227,0.08);
+  border:1px solid rgba(10,189,227,0.15);border-radius:6px;font-size:.83rem
+}
+.selected-tag .tag-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.selected-tag .tag-remove{
+  cursor:pointer;color:var(--text-muted);margin-left:8px;font-size:1rem;line-height:1;
+  padding:2px 4px;border-radius:4px;flex-shrink:0
+}
+.selected-tag .tag-remove:hover{color:var(--accent);background:rgba(233,69,96,0.12)}
+.selected-tag .tag-fee-toggle{
+  cursor:pointer;color:var(--accent2);margin-right:6px;font-size:.70rem;
+  user-select:none;flex-shrink:0
+}
+.selected-tag .tag-fee-toggle:hover{text-decoration:underline}
+
+/* Fee config inline */
+.fee-inline{
+  display:none;margin-bottom:6px;padding:8px 10px;background:rgba(10,189,227,0.04);
+  border:1px solid rgba(10,189,227,0.1);border-radius:6px;margin-left:4px;margin-right:4px
+}
+.fee-inline.open{display:block}
+.fee-inline .form-group{margin-bottom:5px}
+.fee-inline label{font-size:.72rem}
+.fee-inline input{padding:5px 8px;font-size:.76rem}
+.preset-btns{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}
+.preset-btn{
+  padding:2px 7px;font-size:.67rem;background:rgba(10,189,227,0.1);
+  border:1px solid rgba(10,189,227,0.25);color:var(--accent2);
+  border-radius:10px;cursor:pointer;font-family:inherit;white-space:nowrap
+}
+.preset-btn:hover{background:rgba(10,189,227,0.2);border-color:var(--accent2)}
+.preset-btn.active{background:rgba(10,189,227,0.3);border-color:var(--accent2)}
+
+.status-bar{font-size:.78rem;color:var(--text-muted);margin-top:8px;text-align:center}
+.status-bar.error{color:var(--accent)}
+.loading{display:inline-block;width:14px;height:14px;border:2px solid var(--text-muted);border-top-color:var(--accent2);border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.chart-container{
+  position:relative;background:var(--card-bg);border:1px solid var(--card-border);
+  border-radius:var(--radius);padding:18px;margin-bottom:18px;backdrop-filter:blur(8px)
+}
+.chart-container canvas{width:100%!important}
+.no-data{text-align:center;padding:60px 20px;color:var(--text-muted);font-size:1.05rem}
+table.summary-table{width:100%;border-collapse:collapse;font-size:.83rem}
+table.summary-table th{text-align:left;padding:8px 10px;border-bottom:1px solid rgba(255,255,255,0.08);color:var(--text-muted);font-weight:600;font-size:.73rem;text-transform:uppercase;letter-spacing:.04em}
+table.summary-table td{padding:7px 10px;border-bottom:1px solid rgba(255,255,255,0.04);font-variant-numeric:tabular-nums}
+.positive{color:var(--accent3)}.negative{color:var(--accent)}
+@media(max-width:900px){.app{grid-template-columns:1fr}.left-panel{max-height:none;position:static;border-right:none;border-bottom:1px solid var(--card-border)}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="left-panel">
+  <h3 style="color:var(--text);text-transform:none;letter-spacing:0;margin-bottom:18px;font-size:1.1rem">📊 Fund Comparator</h3>
+
+  <div class="section">
+    <div class="section-title">Investment Plan</div>
+    <div class="form-group">
+      <label>Monthly Contribution (€)</label>
+      <input type="number" id="cfg-contribution" value="40" min="1" step="1">
+    </div>
+    <div class="form-group">
+      <label>Start Date</label>
+      <input type="month" id="cfg-start" value="2025-02">
+    </div>
+    <div class="form-group">
+      <label>End Date</label>
+      <input type="month" id="cfg-end">
+    </div>
+  </div>
+
+  <div class="section" id="options-panel">
+    <div class="section-title">Investment Options</div>
+    <div class="dropdown-wrap">
+      <input type="text" id="search-input" placeholder="Search funds…" autocomplete="off">
+      <div class="dropdown-menu" id="dropdown-menu"></div>
+    </div>
+    <div class="selected-list" id="selected-list"></div>
+  </div>
+
+  <div class="status-bar" id="status-bar">Loading options…</div>
+</aside>
+
+<main class="main-content" id="main-content">
+  <div class="no-data">Search and select investment options to compare.</div>
+</main>
+</div>
+
+<script>
+// ============ CONFIG ============
+var COLORS = ['#e94560','#0abde3','#10b981','#f59e0b','#8b5cf6','#ec4899','#06b6d4','#84cc16'];
+var FEE_PRESETS = {
+  'NLB Fund': { entry: 2.55, exit: 1.0, fixed: 0 },
+  'Trading212': { entry: 0, exit: 0, fixed: 0 },
+  'IBKR Tiered': { entry: 0, exit: 0, fixed: 1.25 },
+  'Degiro': { entry: 0, exit: 0, fixed: 1.0 },
+  'Custom': null
+};
+
+var OPTIONS = [];
+var SELECTED = [];       // indices into OPTIONS
+var FEE_OVERRIDES = {};  // idx → {entry, exit, fixed}
+var CSV_CACHE = {};
+var DEBOUNCE_TIMER = null;
+
+// ============ DATA LOADING ============
+function status(msg, isErr) {
+  var el = document.getElementById('status-bar');
+  el.textContent = msg;
+  el.className = 'status-bar' + (isErr ? ' error' : '');
+}
+
+async function fetchJson(url) {
+  var resp = await fetch(url);
+  if (!resp.ok) throw new Error('HTTP ' + resp.status + ' for ' + url);
+  return resp.json();
+}
+
+async function fetchCsvText(url) {
+  var resp = await fetch(url);
+  if (!resp.ok) throw new Error('HTTP ' + resp.status + ' for ' + url);
+  return resp.text();
+}
+
+function parseCsv(text) {
+  var lines = text.trim().split('\n');
+  if (lines.length < 2) return [];
+  var result = [];
+  for (var i = 1; i < lines.length; i++) {
+    var parts = lines[i].split(',');
+    if (parts.length < 2) continue;
+    var date = parts[0].trim();
+    var val = parseFloat(parts[1].trim());
+    if (!date || isNaN(val)) continue;
+    result.push([date, val]);
+  }
+  return result;
+}
+
+// ============ BUILD OPTIONS ============
+async function initOptions() {
+  try {
+    var config = await fetchJson('sources.json');
+    OPTIONS = [];
+    for (var i = 0; i < config.items.length; i++) {
+      var item = config.items[i];
+      if (item.category === 'etf') {
+        OPTIONS.push({
+          id: item.id,
+          name: item.name + ' (' + item.ticker + ')',
+          csvUrl: item.output,
+          metadata: 'ETF · TER ' + item.ter + '% · ' + item.currency,
+          fees: { entry: item.fees.entry_fee, exit: item.fees.exit_fee, fixed: item.fees.fixed_monthly },
+          defaultPreset: 'Trading212'
+        });
+      } else {
+        OPTIONS.push({
+          id: item.id,
+          name: item.name,
+          csvUrl: item.output,
+          metadata: 'Mutual fund · ' + item.currency,
+          fees: { entry: item.fees.entry_fee, exit: item.fees.exit_fee, fixed: item.fees.fixed_monthly },
+          defaultPreset: 'NLB Fund'
+        });
+      }
+    }
+
+    // Default: select first 3
+    SELECTED = [0, 1, 2];
+    for (var s = 0; s < SELECTED.length; s++) {
+      initFeeOverride(SELECTED[s]);
+    }
+
+    renderDropdown();
+    renderSelectedList();
+    bindSearchEvents();
+    bindParamEvents();
+    status('Ready — ' + OPTIONS.length + ' options loaded');
+  } catch (err) {
+    status('Failed to load config: ' + err.message, true);
+  }
+}
+
+function initFeeOverride(idx) {
+  var opt = OPTIONS[idx];
+  FEE_OVERRIDES[idx] = {
+    entry: opt.fees.entry,
+    exit: opt.fees.exit,
+    fixed: opt.fees.fixed,
+    preset: opt.defaultPreset
+  };
+}
+
+// ============ DROPDOWN ============
+function renderDropdown(filter) {
+  var menu = document.getElementById('dropdown-menu');
+  var html = '';
+  var count = 0;
+  var q = (filter || '').toLowerCase();
+  for (var i = 0; i < OPTIONS.length; i++) {
+    if (q && OPTIONS[i].name.toLowerCase().indexOf(q) === -1) continue;
+    var sel = SELECTED.indexOf(i) !== -1;
+    html += '<div class="dropdown-item' + (sel ? ' selected' : '') + '" data-idx="' + i + '">';
+    html += '<span>' + OPTIONS[i].name + '</span>';
+    html += '<span class="meta">' + (OPTIONS[i].metadata || '') + '</span>';
+    html += '</div>';
+    count++;
+  }
+  if (count === 0) {
+    html = '<div class="dropdown-no-results">No funds match "' + (filter || '') + '"</div>';
+  }
+  menu.innerHTML = html;
+  if (filter !== undefined) {
+    menu.classList.add('open');
+  }
+
+  // Bind click
+  var items = menu.querySelectorAll('.dropdown-item');
+  for (var j = 0; j < items.length; j++) {
+    items[j].addEventListener('mousedown', function(e) {
+      e.preventDefault();
+      var idx = parseInt(this.getAttribute('data-idx'));
+      toggleFund(idx);
+    });
+  }
+}
+
+function toggleFund(idx) {
+  var pos = SELECTED.indexOf(idx);
+  if (pos !== -1) {
+    SELECTED.splice(pos, 1);
+    delete FEE_OVERRIDES[idx];
+  } else {
+    SELECTED.push(idx);
+    if (!FEE_OVERRIDES[idx]) initFeeOverride(idx);
+  }
+  renderSelectedList();
+  renderDropdown(document.getElementById('search-input').value);
+  scheduleRun();
+}
+
+function removeFund(idx) {
+  var pos = SELECTED.indexOf(idx);
+  if (pos !== -1) {
+    SELECTED.splice(pos, 1);
+    delete FEE_OVERRIDES[idx];
+  }
+  renderSelectedList();
+  renderDropdown(document.getElementById('search-input').value);
+  scheduleRun();
+}
+
+// ============ SELECTED LIST ============
+function renderSelectedList() {
+  var container = document.getElementById('selected-list');
+  if (SELECTED.length === 0) {
+    container.innerHTML = '<div style="font-size:.78rem;color:var(--text-muted);padding:6px 0">No funds selected</div>';
+    return;
+  }
+  var html = '';
+  for (var i = 0; i < SELECTED.length; i++) {
+    var idx = SELECTED[i];
+    var opt = OPTIONS[idx];
+    var fov = FEE_OVERRIDES[idx];
+    var color = COLORS[i % COLORS.length];
+    html += '<div>';
+    html += '<div class="selected-tag">';
+    html += '<span class="tag-fee-toggle" data-idx="' + idx + '" title="Configure fees">⚙</span>';
+    html += '<span class="tag-name" style="border-left:3px solid ' + color + ';padding-left:8px">' + opt.name + '</span>';
+    html += '<span class="tag-remove" data-idx="' + idx + '" title="Remove">✕</span>';
+    html += '</div>';
+    html += '<div class="fee-inline" id="fee-inline-' + idx + '">';
+    html += '<div class="preset-btns">';
+    var presets = Object.keys(FEE_PRESETS);
+    for (var p = 0; p < presets.length; p++) {
+      var pname = presets[p];
+      var activeClass = (pname === fov.preset) ? ' active' : '';
+      html += '<button class="preset-btn' + activeClass + '" data-idx="' + idx + '" data-preset="' + pname + '">' + pname + '</button>';
+    }
+    html += '</div>';
+    html += '<div class="form-group"><label>Entry / Load Fee (%)</label><input type="number" class="fee-entry" data-idx="' + idx + '" value="' + fov.entry.toFixed(2) + '" step="0.01" min="0"></div>';
+    html += '<div class="form-group"><label>Exit Fee (%)</label><input type="number" class="fee-exit" data-idx="' + idx + '" value="' + fov.exit.toFixed(2) + '" step="0.01" min="0"></div>';
+    html += '<div class="form-group"><label>Fixed Per-Trade Fee (€)</label><input type="number" class="fee-fixed" data-idx="' + idx + '" value="' + fov.fixed.toFixed(2) + '" step="0.01" min="0"></div>';
+    html += '</div>';
+    html += '</div>';
+  }
+  container.innerHTML = html;
+
+  // Bind remove buttons
+  var removes = container.querySelectorAll('.tag-remove');
+  for (var r = 0; r < removes.length; r++) {
+    removes[r].addEventListener('click', function() {
+      removeFund(parseInt(this.getAttribute('data-idx')));
+    });
+  }
+
+  // Bind fee toggles
+  var toggles = container.querySelectorAll('.tag-fee-toggle');
+  for (var t = 0; t < toggles.length; t++) {
+    toggles[t].addEventListener('click', function() {
+      var idx = this.getAttribute('data-idx');
+      document.getElementById('fee-inline-' + idx).classList.toggle('open');
+    });
+  }
+
+  // Bind preset buttons
+  var pbtns = container.querySelectorAll('.preset-btn');
+  for (var b = 0; b < pbtns.length; b++) {
+    pbtns[b].addEventListener('click', function() {
+      var idx = parseInt(this.getAttribute('data-idx'));
+      var preset = this.getAttribute('data-preset');
+      var p = FEE_PRESETS[preset];
+      if (!p) return;
+      FEE_OVERRIDES[idx].entry = p.entry;
+      FEE_OVERRIDES[idx].exit = p.exit;
+      FEE_OVERRIDES[idx].fixed = p.fixed;
+      FEE_OVERRIDES[idx].preset = preset;
+      renderSelectedList();
+      scheduleRun();
+    });
+  }
+
+  // Bind fee input changes
+  var entryInputs = container.querySelectorAll('.fee-entry');
+  var exitInputs = container.querySelectorAll('.fee-exit');
+  var fixedInputs = container.querySelectorAll('.fee-fixed');
+  for (var ei = 0; ei < entryInputs.length; ei++) {
+    entryInputs[ei].addEventListener('input', function() {
+      var idx = parseInt(this.getAttribute('data-idx'));
+      FEE_OVERRIDES[idx].entry = parseFloat(this.value) || 0;
+      FEE_OVERRIDES[idx].preset = 'Custom';
+      scheduleRun();
+    });
+    exitInputs[ei].addEventListener('input', function() {
+      var idx = parseInt(this.getAttribute('data-idx'));
+      FEE_OVERRIDES[idx].exit = parseFloat(this.value) || 0;
+      FEE_OVERRIDES[idx].preset = 'Custom';
+      scheduleRun();
+    });
+    fixedInputs[ei].addEventListener('input', function() {
+      var idx = parseInt(this.getAttribute('data-idx'));
+      FEE_OVERRIDES[idx].fixed = parseFloat(this.value) || 0;
+      FEE_OVERRIDES[idx].preset = 'Custom';
+      scheduleRun();
+    });
+  }
+}
+
+// ============ EVENTS ============
+function bindSearchEvents() {
+  var input = document.getElementById('search-input');
+  var menu = document.getElementById('dropdown-menu');
+
+  input.addEventListener('focus', function() {
+    renderDropdown(this.value);
+    menu.classList.add('open');
+  });
+
+  input.addEventListener('input', function() {
+    renderDropdown(this.value);
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!document.getElementById('options-panel').contains(e.target)) {
+      menu.classList.remove('open');
+    }
+  });
+}
+
+function bindParamEvents() {
+  var els = ['cfg-contribution', 'cfg-start', 'cfg-end'];
+  for (var i = 0; i < els.length; i++) {
+    document.getElementById(els[i]).addEventListener('input', scheduleRun);
+  }
+}
+
+function scheduleRun() {
+  if (DEBOUNCE_TIMER) clearTimeout(DEBOUNCE_TIMER);
+  DEBOUNCE_TIMER = setTimeout(runSimulation, 400);
+}
+
+// ============ SIMULATION ============
+function parseDate(str) {
+  var parts = str.split('-');
+  return new Date(+parts[0], +parts[1] - 1, +parts[2]);
+}
+
+function findPrice(data, targetDate) {
+  var tt = targetDate.getTime();
+  for (var i = 0; i < data.length; i++) {
+    if (parseDate(data[i][0]).getTime() >= tt) return data[i][1];
+  }
+  return data[data.length - 1][1];
+}
+
+function findPriceDate(data, targetDate) {
+  var tt = targetDate.getTime();
+  for (var i = 0; i < data.length; i++) {
+    if (parseDate(data[i][0]).getTime() >= tt) return data[i][0];
+  }
+  return data[data.length - 1][0];
+}
+
+function simulate(selected) {
+  var contrib = parseFloat(document.getElementById('cfg-contribution').value) || 40;
+  var startStr = document.getElementById('cfg-start').value;
+  var endStr = document.getElementById('cfg-end').value;
+
+  var startParts = startStr.split('-');
+  var startDate = new Date(+startParts[0], +startParts[1] - 1, 1);
+
+  var endDate;
+  if (endStr) {
+    var ep = endStr.split('-');
+    endDate = new Date(+ep[0], +ep[1], 0);
+  } else {
+    var now = new Date();
+    endDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  }
+
+  if (startDate >= endDate) return null;
+
+  var results = [];
+
+  for (var s = 0; s < selected.length; s++) {
+    var sel = selected[s];
+    var data = sel.data;
+    if (!data || data.length === 0) continue;
+
+    var fov = FEE_OVERRIDES[sel.idx];
+    var entryFee = fov ? fov.entry : 0;
+    var exitFee = fov ? fov.exit : 0;
+    var fixedFee = fov ? fov.fixed : 0;
+
+    var totalUnits = 0, totalInvested = 0, totalEntryFees = 0;
+    var lastPrice = data[data.length - 1][1];
+
+    var chartPoints = [];
+    var cumUnits = 0;
+    var cur = new Date(startDate);
+
+    while (cur <= endDate) {
+      var cd = new Date(cur.getFullYear(), cur.getMonth(), 1);
+      if (cd > endDate) break;
+
+      var p = findPrice(data, cd);
+      var pd = findPriceDate(data, cd);
+      var ea = contrib * (entryFee / 100) + fixedFee;
+      var eff = Math.max(0, contrib - ea);
+      var units = eff / p;
+
+      cumUnits += units;
+      totalUnits += units;
+      totalInvested += contrib;
+      totalEntryFees += ea;
+      chartPoints.push([pd, cumUnits * p]);
+
+      cur.setMonth(cur.getMonth() + 1);
+    }
+
+    var grossValue = totalUnits * lastPrice;
+    var exitFeeAmount = grossValue * (exitFee / 100);
+    var netValue = grossValue - exitFeeAmount;
+    var totalFees = totalEntryFees + exitFeeAmount;
+    var totalReturn = ((netValue - totalInvested) / totalInvested) * 100;
+
+    var years = (endDate.getTime() - startDate.getTime()) / (365.25 * 86400000);
+    var annualized = 0;
+    if (years > 0 && totalInvested > 0 && netValue > 0) {
+      annualized = (Math.pow(netValue / totalInvested, 1 / years) - 1) * 100;
+    }
+
+    results.push({
+      opt: { name: sel.name },
+      entryFee: entryFee, exitFee: exitFee, fixedFee: fixedFee,
+      totalUnits: totalUnits, totalInvested: totalInvested,
+      grossValue: grossValue, netValue: netValue,
+      totalReturn: totalReturn, annualized: annualized,
+      totalFees: totalFees, totalEntryFees: totalEntryFees,
+      exitFeeAmount: exitFeeAmount, years: years,
+      chartPoints: chartPoints, latestPrice: lastPrice
+    });
+  }
+
+  return results;
+}
+
+// ============ RENDER ============
+var mainChart = null, feeChart = null;
+
+function fmtEur(v) { return '€' + v.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+function fmtPct(v) { return (v >= 0 ? '+' : '') + v.toFixed(2) + '%'; }
+
+function renderResults(results) {
+  var container = document.getElementById('main-content');
+  if (!results || results.length === 0) {
+    container.innerHTML = '<div class="no-data">No data to display. Adjust date range or select funds.</div>';
+    return;
+  }
+
+  var colors = results.map(function(_, i) { return COLORS[i % COLORS.length]; });
+
+  var html = '<h3>Summary</h3>';
+  html += '<div class="section" style="overflow-x:auto"><table class="summary-table"><thead><tr><th>Metric</th>';
+  for (var i = 0; i < results.length; i++) {
+    html += '<th style="color:' + colors[i] + '">' + results[i].opt.name + '</th>';
+  }
+  html += '</tr></thead><tbody>';
+
+  var rows = [
+    ['Total Invested',        function(r) { return fmtEur(r.totalInvested); }],
+    ['Current Gross Value',   function(r) { return fmtEur(r.grossValue); }],
+    ['Current Net Value',     function(r) { return fmtEur(r.netValue); }],
+    ['Profit / Loss (Net)',   function(r) { return fmtEur(r.netValue - r.totalInvested); }],
+    ['Total Return (Net)',    function(r) { return '<span class="' + (r.totalReturn>=0?'positive':'negative') + '">' + fmtPct(r.totalReturn) + '</span>'; }],
+    ['Annualized Return',     function(r) { return '<span class="' + (r.annualized>=0?'positive':'negative') + '">' + fmtPct(r.annualized) + '</span>'; }],
+    ['Total Fees Paid',       function(r) { return fmtEur(r.totalFees); }],
+    ['  Entry Fees',          function(r) { return fmtEur(r.totalEntryFees); }],
+    ['  Exit Fee',            function(r) { return fmtEur(r.exitFeeAmount); }],
+    ['Period',                function(r) { return r.years.toFixed(1) + ' years'; }],
+    ['Units Held',            function(r) { return r.totalUnits.toFixed(4); }],
+    ['Latest Price/NAV',      function(r) { return fmtEur(r.latestPrice); }]
+  ];
+
+  for (var r = 0; r < rows.length; r++) {
+    html += '<tr><td>' + rows[r][0] + '</td>';
+    for (var i = 0; i < results.length; i++) {
+      html += '<td>' + rows[r][1](results[i]) + '</td>';
+    }
+    html += '</tr>';
+  }
+  html += '</tbody></table></div>';
+
+  html += '<h3>Portfolio Value Over Time (Gross)</h3>';
+  html += '<div class="chart-container" style="height:420px"><canvas id="chart-main"></canvas></div>';
+  html += '<h3>Fee Comparison</h3>';
+  html += '<div class="chart-container" style="height:300px"><canvas id="chart-fees"></canvas></div>';
+
+  container.innerHTML = html;
+
+  setTimeout(function() {
+    renderMainChart(results, colors);
+    renderFeeChart(results, colors);
+  }, 60);
+}
+
+function renderMainChart(results, colors) {
+  var canvas = document.getElementById('chart-main');
+  if (!canvas) return;
+  if (mainChart) mainChart.destroy();
+
+  var allDates = new Set();
+  for (var i = 0; i < results.length; i++) {
+    var pts = results[i].chartPoints;
+    for (var j = 0; j < pts.length; j++) allDates.add(pts[j][0]);
+  }
+  var sortedLabels = Array.from(allDates).sort();
+
+  var datasets = [];
+  for (var i = 0; i < results.length; i++) {
+    var pts = results[i].chartPoints;
+    var map = {};
+    for (var j = 0; j < pts.length; j++) map[pts[j][0]] = pts[j][1];
+
+    var data = [];
+    var last = null;
+    for (var k = 0; k < sortedLabels.length; k++) {
+      var v = map[sortedLabels[k]];
+      if (v !== undefined) { last = v; data.push(v); }
+      else if (last !== null) data.push(last);
+      else data.push(null);
+    }
+
+    datasets.push({
+      label: results[i].opt.name,
+      data: data,
+      borderColor: colors[i],
+      backgroundColor: colors[i] + '15',
+      borderWidth: 2.5,
+      pointRadius: 0,
+      pointHoverRadius: 5,
+      tension: 0.2,
+      spanGaps: true
+    });
+  }
+
+  mainChart = new Chart(canvas.getContext('2d'), {
+    type: 'line',
+    data: { labels: sortedLabels, datasets: datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { labels: { color: '#e0e0e0', usePointStyle: true, padding: 18, font: { size: 11 } } },
+        tooltip: {
+          backgroundColor: 'rgba(22,33,62,0.95)', titleColor: '#e0e0e0', bodyColor: '#e0e0e0',
+          borderColor: 'rgba(255,255,255,0.1)', borderWidth: 1,
+          callbacks: { label: function(ctx) { return ' ' + ctx.dataset.label + ': €' + ctx.parsed.y.toFixed(2); } }
+        }
+      },
+      scales: {
+        x: { ticks: { color: '#8892a4', maxRotation: 45, font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.04)' } },
+        y: { ticks: { color: '#8892a4', callback: function(v) { return '€' + v; }, font: { size: 11 } }, grid: { color: 'rgba(255,255,255,0.04)' } }
+      }
+    }
+  });
+}
+
+function renderFeeChart(results, colors) {
+  var canvas = document.getElementById('chart-fees');
+  if (!canvas) return;
+  if (feeChart) feeChart.destroy();
+
+  var labels = [], entryData = [], exitData = [];
+  for (var i = 0; i < results.length; i++) {
+    labels.push(results[i].opt.name);
+    entryData.push(results[i].totalEntryFees);
+    exitData.push(results[i].exitFeeAmount);
+  }
+
+  feeChart = new Chart(canvas.getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [
+        { label: 'Entry Fees', data: entryData, backgroundColor: colors.map(function(c) { return c + '99'; }), borderColor: colors, borderWidth: 1 },
+        { label: 'Exit Fee', data: exitData, backgroundColor: colors.map(function(c) { return c + '44'; }), borderColor: colors, borderWidth: 1, borderDash: [4,4] }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { labels: { color: '#e0e0e0', usePointStyle: true, padding: 18, font: { size: 11 } } },
+        tooltip: {
+          backgroundColor: 'rgba(22,33,62,0.95)', titleColor: '#e0e0e0', bodyColor: '#e0e0e0',
+          borderColor: 'rgba(255,255,255,0.1)', borderWidth: 1,
+          callbacks: { label: function(ctx) { return ' ' + ctx.dataset.label + ': €' + ctx.parsed.y.toFixed(2); } }
+        }
+      },
+      scales: {
+        x: { ticks: { color: '#8892a4', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.04)' } },
+        y: { ticks: { color: '#8892a4', callback: function(v) { return '€' + v; }, font: { size: 11 } }, grid: { color: 'rgba(255,255,255,0.04)' } }
+      }
+    }
+  });
+}
+
+// ============ MAIN ============
+async function runSimulation() {
+  if (SELECTED.length === 0) {
+    document.getElementById('main-content').innerHTML = '<div class="no-data">Search and select at least one fund to compare.</div>';
+    return;
+  }
+
+  status('⏳ Loading data…');
+
+  var selected = [];
+  for (var i = 0; i < SELECTED.length; i++) {
+    var idx = SELECTED[i];
+    selected.push({
+      idx: idx,
+      id: OPTIONS[idx].id,
+      name: OPTIONS[idx].name,
+      csvUrl: OPTIONS[idx].csvUrl
+    });
+  }
+
+  var errors = [];
+  for (var s = 0; s < selected.length; s++) {
+    var sel = selected[s];
+    if (CSV_CACHE[sel.id]) {
+      sel.data = CSV_CACHE[sel.id];
+    } else {
+      try {
+        var text = await fetchCsvText(sel.csvUrl);
+        sel.data = parseCsv(text);
+        CSV_CACHE[sel.id] = sel.data;
+      } catch (e) {
+        errors.push(sel.name + ': ' + e.message);
+        sel.data = [];
+      }
+    }
+  }
+
+  if (errors.length > 0) {
+    status('Data errors: ' + errors.join('; '), true);
+  } else {
+    var total = 0;
+    for (var s2 = 0; s2 < selected.length; s2++) total += selected[s2].data.length;
+    status('Ready — ' + selected.length + ' funds, ' + total + ' data points');
+  }
+
+  var results = simulate(selected);
+  renderResults(results);
+}
+
+// Init
+function setDefaultEnd() {
+  var now = new Date();
+  var m = String(now.getMonth() + 1).padStart(2, '0');
+  document.getElementById('cfg-end').value = now.getFullYear() + '-' + m;
+}
+
+setDefaultEnd();
+initOptions().then(function() {
+  setTimeout(runSimulation, 500);
+});
+</script>
+</body>
+</html>

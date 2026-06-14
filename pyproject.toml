@@ -1,0 +1,26 @@
+[project]
+name = "mojiskladi"
+version = "0.1.0"
+description = "Slovenian Mutual Funds vs. Neobroker ETF Simulator"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "yfinance>=0.2.0",
+    "pandas>=2.0",
+    "click>=8.1.7",
+    "tabulate>=0.9.0",
+    "jinja2>=3.1.3",
+]
+
+[project.scripts]
+mojiskladi = "src.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.uv]
+package = true

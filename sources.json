@@ -1,0 +1,414 @@
+{
+    "items": [
+        {
+            "id": "nlb-globalni-uravnotezeni",
+            "name": "NLB Skladi Globalni Uravnoteženi",
+            "currency": "EUR",
+            "category": "mutual_fund",
+            "fees": {
+                "entry_fee": 2.55,
+                "exit_fee": 1.0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "nlb_api",
+                "fund_id": "21"
+            },
+            "output": "data/nlb-globalni-uravnotezeni.csv"
+        },
+        {
+            "id": "nlb-slovenija-mesani",
+            "name": "NLB Skladi Slovenija Mešani",
+            "currency": "EUR",
+            "category": "mutual_fund",
+            "fees": {
+                "entry_fee": 2.55,
+                "exit_fee": 1.0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "nlb_api",
+                "fund_id": "22"
+            },
+            "output": "data/nlb-slovenija-mesani.csv"
+        },
+        {
+            "id": "nlb-podjetniske-obveznice-eur",
+            "name": "NLB Skladi Podjetniške Obveznice EUR",
+            "currency": "EUR",
+            "category": "mutual_fund",
+            "fees": {
+                "entry_fee": 2.55,
+                "exit_fee": 1.0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "nlb_api",
+                "fund_id": "23"
+            },
+            "output": "data/nlb-podjetniske-obveznice-eur.csv"
+        },
+        {
+            "id": "nlb-svetovni-razviti-trgi-delniski",
+            "name": "NLB Skladi Svetovni Razviti Trgi Delniški",
+            "currency": "EUR",
+            "category": "mutual_fund",
+            "fees": {
+                "entry_fee": 2.55,
+                "exit_fee": 1.0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "nlb_api",
+                "fund_id": "24"
+            },
+            "output": "data/nlb-svetovni-razviti-trgi-delniski.csv"
+        },
+        {
+            "id": "nlb-evropa-uravnotezeni",
+            "name": "NLB Skladi Evropa Uravnoteženi",
+            "currency": "EUR",
+            "category": "mutual_fund",
+            "fees": {
+                "entry_fee": 2.55,
+                "exit_fee": 1.0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "nlb_api",
+                "fund_id": "1243"
+            },
+            "output": "data/nlb-evropa-uravnotezeni.csv"
+        },
+        {
+            "id": "nlb-dinamicni-razviti-trgi-delniski",
+            "name": "NLB Skladi Dinamični Razviti Trgi Delniški",
+            "currency": "EUR",
+            "category": "mutual_fund",
+            "fees": {
+                "entry_fee": 2.55,
+                "exit_fee": 1.0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "nlb_api",
+                "fund_id": "1366"
+            },
+            "output": "data/nlb-dinamicni-razviti-trgi-delniski.csv"
+        },
+        {
+            "id": "nlb-razvita-evropa-delniski",
+            "name": "NLB Skladi Razvita Evropa Delniški",
+            "currency": "EUR",
+            "category": "mutual_fund",
+            "fees": {
+                "entry_fee": 2.55,
+                "exit_fee": 1.0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "nlb_api",
+                "fund_id": "1570"
+            },
+            "output": "data/nlb-razvita-evropa-delniski.csv"
+        },
+        {
+            "id": "nlb-farmacija-in-zdravstvo-delniski",
+            "name": "NLB Skladi Farmacija in Zdravstvo Delniški",
+            "currency": "EUR",
+            "category": "mutual_fund",
+            "fees": {
+                "entry_fee": 2.55,
+                "exit_fee": 1.0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "nlb_api",
+                "fund_id": "2110"
+            },
+            "output": "data/nlb-farmacija-in-zdravstvo-delniski.csv"
+        },
+        {
+            "id": "nlb-naravni-viri-delniski",
+            "name": "NLB Skladi Naravni Viri Delniški",
+            "currency": "EUR",
+            "category": "mutual_fund",
+            "fees": {
+                "entry_fee": 2.55,
+                "exit_fee": 1.0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "nlb_api",
+                "fund_id": "2111"
+            },
+            "output": "data/nlb-naravni-viri-delniski.csv"
+        },
+        {
+            "id": "nlb-visoka-tehnologija-delniski",
+            "name": "NLB Skladi Visoka Tehnologija Delniški",
+            "currency": "EUR",
+            "category": "mutual_fund",
+            "fees": {
+                "entry_fee": 2.55,
+                "exit_fee": 1.0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "nlb_api",
+                "fund_id": "2112"
+            },
+            "output": "data/nlb-visoka-tehnologija-delniski.csv"
+        },
+        {
+            "id": "nlb-trgi-v-razvoju-delniski",
+            "name": "NLB Skladi Trgi v Razvoju Delniški",
+            "currency": "EUR",
+            "category": "mutual_fund",
+            "fees": {
+                "entry_fee": 2.55,
+                "exit_fee": 1.0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "nlb_api",
+                "fund_id": "2113"
+            },
+            "output": "data/nlb-trgi-v-razvoju-delniski.csv"
+        },
+        {
+            "id": "nlb-evropa-trgi-v-razvoju-delniski",
+            "name": "NLB Skladi Evropa Trgi v Razvoju Delniški",
+            "currency": "EUR",
+            "category": "mutual_fund",
+            "fees": {
+                "entry_fee": 2.55,
+                "exit_fee": 1.0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "nlb_api",
+                "fund_id": "3450"
+            },
+            "output": "data/nlb-evropa-trgi-v-razvoju-delniski.csv"
+        },
+        {
+            "id": "nlb-zahodni-balkan-delniski",
+            "name": "NLB Skladi Zahodni Balkan Delniški",
+            "currency": "EUR",
+            "category": "mutual_fund",
+            "fees": {
+                "entry_fee": 2.55,
+                "exit_fee": 1.0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "nlb_api",
+                "fund_id": "4687"
+            },
+            "output": "data/nlb-zahodni-balkan-delniski.csv"
+        },
+        {
+            "id": "nlb-globalni-delniski",
+            "name": "NLB Skladi Globalni Delniški",
+            "currency": "EUR",
+            "category": "mutual_fund",
+            "fees": {
+                "entry_fee": 2.55,
+                "exit_fee": 1.0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "nlb_api",
+                "fund_id": "5050"
+            },
+            "output": "data/nlb-globalni-delniski.csv"
+        },
+        {
+            "id": "nlb-azija-delniski",
+            "name": "NLB Skladi Azija Delniški",
+            "currency": "EUR",
+            "category": "mutual_fund",
+            "fees": {
+                "entry_fee": 2.55,
+                "exit_fee": 1.0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "nlb_api",
+                "fund_id": "5767"
+            },
+            "output": "data/nlb-azija-delniski.csv"
+        },
+        {
+            "id": "nlb-obveznice-visokih-donosnosti",
+            "name": "NLB Skladi Obveznice Visokih Donosnosti",
+            "currency": "EUR",
+            "category": "mutual_fund",
+            "fees": {
+                "entry_fee": 2.55,
+                "exit_fee": 1.0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "nlb_api",
+                "fund_id": "6000"
+            },
+            "output": "data/nlb-obveznice-visokih-donosnosti.csv"
+        },
+        {
+            "id": "nlb-nepremicnine-delniski",
+            "name": "NLB Skladi Nepremičnine Delniški",
+            "currency": "EUR",
+            "category": "mutual_fund",
+            "fees": {
+                "entry_fee": 2.55,
+                "exit_fee": 1.0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "nlb_api",
+                "fund_id": "6100"
+            },
+            "output": "data/nlb-nepremicnine-delniski.csv"
+        },
+        {
+            "id": "nlb-zda-delniski",
+            "name": "NLB Skladi ZDA Delniški",
+            "currency": "EUR",
+            "category": "mutual_fund",
+            "fees": {
+                "entry_fee": 2.55,
+                "exit_fee": 1.0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "nlb_api",
+                "fund_id": "6200"
+            },
+            "output": "data/nlb-zda-delniski.csv"
+        },
+        {
+            "id": "nlb-druzbeno-odgovorni-razviti-trgi-delniski",
+            "name": "NLB Skladi Družbeno Odgovorni Razviti Trgi Delniški",
+            "currency": "EUR",
+            "category": "mutual_fund",
+            "fees": {
+                "entry_fee": 2.55,
+                "exit_fee": 1.0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "nlb_api",
+                "fund_id": "6300"
+            },
+            "output": "data/nlb-druzbeno-odgovorni-razviti-trgi-delniski.csv"
+        },
+        {
+            "id": "nlb-zeleni-delniski",
+            "name": "NLB Skladi Zeleni Delniški",
+            "currency": "EUR",
+            "category": "mutual_fund",
+            "fees": {
+                "entry_fee": 2.55,
+                "exit_fee": 1.0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "nlb_api",
+                "fund_id": "6400"
+            },
+            "output": "data/nlb-zeleni-delniski.csv"
+        },
+        {
+            "id": "vwce",
+            "name": "Vanguard FTSE All-World UCITS ETF (Acc)",
+            "ticker": "VWCE.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.22,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "VWCE.DE"
+            },
+            "output": "data/vwce.csv"
+        },
+        {
+            "id": "eunm",
+            "name": "iShares MSCI Emerging Markets UCITS ETF (Acc)",
+            "ticker": "EUNM.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.18,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "EUNM.DE"
+            },
+            "output": "data/eunm.csv"
+        },
+        {
+            "id": "xmas",
+            "name": "Xtrackers MSCI EM Asia Swap UCITS ETF 1C (Acc)",
+            "ticker": "XMAS.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.65,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "XMAS.DE"
+            },
+            "output": "data/xmas.csv"
+        },
+        {
+            "id": "sxr8",
+            "name": "iShares Core S&P 500 UCITS ETF (Acc)",
+            "ticker": "SXR8.DE",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.07,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "SXR8.DE"
+            },
+            "output": "data/sxr8.csv"
+        },
+        {
+            "id": "iwda",
+            "name": "iShares Core MSCI World UCITS ETF (Acc)",
+            "ticker": "IWDA.AS",
+            "currency": "EUR",
+            "category": "etf",
+            "ter": 0.20,
+            "fees": {
+                "entry_fee": 0,
+                "exit_fee": 0,
+                "fixed_monthly": 0
+            },
+            "source": {
+                "type": "yahoo",
+                "ticker": "IWDA.AS"
+            },
+            "output": "data/iwda.csv"
+        }
+    ]
+}
