@@ -136,6 +136,10 @@ table.summary-table td{padding:7px 10px;border-bottom:1px solid rgba(255,255,255
       <label>End Date</label>
       <input type="month" id="cfg-end" placeholder="YYYY-MM">
     </div>
+    <div class="form-group">
+      <label>Buy Day of Month</label>
+      <input type="number" id="cfg-buyday" value="15" min="1" max="28" step="1">
+    </div>
   </div>
 
   <div class="section" id="options-panel">
@@ -227,7 +231,7 @@ async function initOptions() {
         OPTIONS.push({
           id: item.id,
           name: item.name,
-          csvUrl: item.output,
+          csvUrl: item.output.replace('.csv', '_daily.csv'),
           category: 'mutual_fund',
           metadata: 'Mutual fund · ' + item.currency,
           fees: { entry: item.fees.entry_fee, exit: item.fees.exit_fee, fixed: item.fees.fixed_monthly },
@@ -438,7 +442,7 @@ function bindSearchEvents() {
 }
 
 function bindParamEvents() {
-  var els = ['cfg-contribution', 'cfg-start', 'cfg-end'];
+  var els = ['cfg-contribution', 'cfg-start', 'cfg-end', 'cfg-buyday'];
   for (var i = 0; i < els.length; i++) {
     document.getElementById(els[i]).addEventListener('input', scheduleRun);
   }
@@ -475,6 +479,7 @@ function simulate(selected) {
   var contrib = parseFloat(document.getElementById('cfg-contribution').value) || 40;
   var startStr = document.getElementById('cfg-start').value;
   var endStr = document.getElementById('cfg-end').value;
+  var buyDay = parseInt(document.getElementById('cfg-buyday').value) || 15;
 
   var startParts = startStr.split('-');
   var startDate = new Date(+startParts[0], +startParts[1] - 1, 1);
@@ -528,12 +533,13 @@ function simulate(selected) {
     var totalUnits = 0, totalInvested = 0, totalEntryFees = 0;
     var lastPrice = data[data.length - 1][1];
 
+    var payments = [];
     var chartPoints = [];
     var cumUnits = 0;
     var cur = new Date(startDate);
 
     while (cur <= endDate) {
-      var cd = new Date(cur.getFullYear(), cur.getMonth(), 1);
+      var cd = new Date(cur.getFullYear(), cur.getMonth(), buyDay);
       if (cd > endDate) break;
 
       var p = findPrice(data, cd);
@@ -547,6 +553,7 @@ function simulate(selected) {
       totalInvested += contrib;
       totalEntryFees += ea;
       chartPoints.push([pd, cumUnits * p * (1 - exitFee / 100)]);
+      payments.push({ date: pd, nav: p, units: units, amount: contrib });
 
       cur.setMonth(cur.getMonth() + 1);
     }
@@ -571,7 +578,8 @@ function simulate(selected) {
       totalReturn: totalReturn, annualized: annualized,
       totalFees: totalFees, totalEntryFees: totalEntryFees,
       exitFeeAmount: exitFeeAmount, years: years,
-      chartPoints: chartPoints, latestPrice: lastPrice
+      chartPoints: chartPoints, latestPrice: lastPrice,
+      payments: payments
     });
   }
 
@@ -628,6 +636,31 @@ function renderResults(results) {
   html += '<div class="chart-container" style="height:420px"><canvas id="chart-main"></canvas></div>';
   html += '<h3>Fee Comparison</h3>';
   html += '<div class="chart-container" style="height:300px"><canvas id="chart-fees"></canvas></div>';
+
+  // Payments table
+  html += '<h3>Payments</h3>';
+  html += '<div class="section" style="overflow-x:auto"><table class="summary-table"><thead><tr><th>#</th><th>Date</th><th>Amount</th>';
+  for (var i = 0; i < results.length; i++) {
+    html += '<th style="color:' + colors[i] + '">' + results[i].opt.name + ' NAV</th>';
+    html += '<th style="color:' + colors[i] + '">Units</th>';
+  }
+  html += '</tr></thead><tbody>';
+
+  var pmts = results[0].payments;
+  var showFirst = 5, showLast = 5;
+  for (var pi = 0; pi < pmts.length; pi++) {
+    if (pmts.length > showFirst + showLast && pi >= showFirst && pi < pmts.length - showLast) {
+      if (pi === showFirst) html += '<tr><td colspan="' + (3 + results.length * 2) + '" style="text-align:center;color:var(--text-muted)">··· ' + (pmts.length - showFirst - showLast) + ' payments omitted ···</td></tr>';
+      continue;
+    }
+    html += '<tr><td>' + (pi + 1) + '</td><td>' + pmts[pi].date + '</td><td>' + fmtEur(pmts[pi].amount) + '</td>';
+    for (var ri = 0; ri < results.length; ri++) {
+      var rp = results[ri].payments[pi];
+      html += '<td>' + fmtEur(rp.nav) + '</td><td>' + rp.units.toFixed(4) + '</td>';
+    }
+    html += '</tr>';
+  }
+  html += '</tbody></table></div>';
 
   container.innerHTML = html;
 
